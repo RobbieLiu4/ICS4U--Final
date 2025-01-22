@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <!-- bootstrap icons -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  >
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .search-results {
+      margin-top: 1rem;
+    }
+    .result-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .result-item a {
+      text-decoration: none;
+      color: #0d6efd;
+    }
+    .result-item a:hover {
+      text-decoration: underline;
+    }
+    .no-results {
+      color: #6c757d;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+<!-- Top bar -->
+<div class="bg-dark text-white py-2">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div>
+      <a
+        href="team-finder.html"
+        class="text-white text-decoration-none me-3"
+        >Team Finder</a
+      >
+      <a
+        href="https://www.facebook.com/sos.softball.3"
+        target="_blank"
+        class="text-white text-decoration-none me-3"
+      >
+        <i class="bi bi-facebook"></i>
+      </a>
+    </div>
+    <div>
+      <a href="contact.html" class="text-white text-decoration-none me-3">
+        <i class="bi bi-envelope-fill"></i> Contact
+      </a>
+      <a href="search.html" class="text-white text-decoration-none me-3">
+        <i class="bi bi-search"></i> Search
+      </a>
+      <a href="login.html" class="text-white text-decoration-none">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Main navv. -->
+<nav class="navbar navbar-expand-lg" style="background-color: #f0f0f0">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">South Ottawa Softball</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon">&#9776;</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="aboutUsDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            About Us
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="aboutUsDropdown">
+            <li><a class="dropdown-item" href="staff.html">Staff</a></li>
+            <li>
+              <a class="dropdown-item" href="contact.html">Contact Us</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="who-we-are.html">Who We Are</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="gamesDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Games
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+            <li>
+              <a class="dropdown-item" href="schedule.html">Schedule</a>
+            </li>
+            <li><a class="dropdown-item" href="scores.html">Scores</a></li>
+            <li>
+              <a class="dropdown-item" href="calendar.html">Calendar</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="standings.html">Standings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="tournament.html">Tournament</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="discussion.html">Discussion</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- search Section -->
+<div class="container my-4">
+  <h1>Search</h1>
+  <form id="searchForm">
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="searchInput"
+        placeholder="Search for posts, users, or other content..."
+        required
+      >
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  <div id="searchResults" class="search-results"></div>
+</div>
+  
+  
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <div class="container">
+    <p class="mb-1">
+      &copy; <span id="year"></span> South Ottawa Softball. All Rights Reserved.
+    </p>
+    <p>
+      <a href="privacy.html" class="text-light text-decoration-none mx-2"
+        >Privacy Policy</a
+      >
+      <a href="terms.html" class="text-light text-decoration-none mx-2"
+        >Terms of Service</a
+      >
+ 
+
+    </p>
+  </div>
+</footer>
+
+<!-- bootstrap js -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+></script>
+<script>
+  // e.g. data for search
+  const sampleData = [
+    { id: 1, type: 'post', content: 'What a great game yesterday!', author: 'John Doe', link: '/posts/1' },
+    { id: 2, type: 'post', content: 'Check out this awesome photo!', author: 'Emily Davis', link: '/posts/2' },
+    { id: 3, type: 'user', content: 'Emily Davis', author: null, link: '/users/3' },
+    { id: 4, type: 'user', content: 'Mark Taylor', author: null, link: '/users/4' },
+    { id: 5, type: 'post', content: 'Who’s ready for the playoffs?', author: 'Sarah Johnson', link: '/posts/5' }
+  ];
+
+  //dom Elements
+  const searchForm = document.getElementById('searchForm');
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+
+  //handle form submission
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const query = searchInput.value.toLowerCase();
+    if (!query) return;
+
+    //filter results
+    const results = sampleData.filter(item => {
+      return (
+        item.content.toLowerCase().includes(query) ||
+        (item.author && item.author.toLowerCase().includes(query))
+      );
+    });
+
+    //render results
+    renderResults(results);
+  });
+
+  //render search results
+  function renderResults(results) {
+    searchResults.innerHTML = ''; //clear prev. results
+
+    if (results.length === 0) {
+      searchResults.innerHTML = '<p class="no-results">No results found.</p>';
+      return;
+    }
+
+    results.forEach(item => {
+      const resultDiv = document.createElement('div');
+      resultDiv.classList.add('result-item');
+      resultDiv.innerHTML = `
+        <p><strong>Type:</strong> ${item.type}</p>
+        <p><strong>Content:</strong> <a href="${item.link}">${item.content}</a></p>
+        ${item.author ? `<p><strong>Author:</strong> ${item.author}</p>` : ''}
+      `;
+      searchResults.appendChild(resultDiv);
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>League Calendar</title>
+    <!-- bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- bootstrap icons -->
+    <link 
+      rel="stylesheet" 
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    >
+    <style>
+      .calendar-container {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+      .calendar-grid {
+        display: grid;
+        gap: 1rem;
+      }
+      .day-cell {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 0.5rem;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .day-cell:hover {
+        background-color: #f0f8ff;
+      }
+      .day-cell h6 {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+      .calendar-dropdown {
+        width: auto;
+      }
+      .calendar-info {
+        font-size: 0.85rem;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+
+<!-- top dark bar -->
+    <div class="bg-dark text-white py-2">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div>
+          <a
+            href="team-finder.html"
+            class="text-white text-decoration-none me-3"
+            >Team Finder</a
+          >
+          <a
+            href="https://www.facebook.com/sos.softball.3"
+            target="_blank"
+            class="text-white text-decoration-none me-3"
+          >
+            <i class="bi bi-facebook"></i>
+          </a>
+        </div>
+        <div>
+          <a href="contact.html" class="text-white text-decoration-none me-3">
+            <i class="bi bi-envelope-fill"></i> Contact
+          </a>
+          <a href="search.html" class="text-white text-decoration-none me-3">
+            <i class="bi bi-search"></i> Search
+          </a>
+          <a href="login.html" class="text-white text-decoration-none">
+            <i class="bi bi-box-arrow-in-right"></i> Login
+          </a>
+        </div>
+      </div>
+    </div>
+
+<!-- Main nav  -->
+<nav class="navbar navbar-expand-lg" style="background-color: #f0f0f0">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">South Ottawa Softball</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon">&#9776;</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="aboutUsDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            About Us
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="aboutUsDropdown">
+            <li><a class="dropdown-item" href="staff.html">Staff</a></li>
+            <li>
+              <a class="dropdown-item" href="contact.html">Contact Us</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="who-we-are.html">Who We Are</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="gamesDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Games
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+            <li>
+              <a class="dropdown-item" href="schedule.html">Schedule</a>
+            </li>
+            <li><a class="dropdown-item" href="scores.html">Scores</a></li>
+            <li>
+              <a class="dropdown-item" href="calendar.html">Calendar</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="standings.html">Standings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="tournament.html">Tournament</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="discussion.html">Discussion</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <body class="bg-light">
+    <div class="container my-4">
+      <h1 class="mb-4">League Calendar</h1>
+
+      <div class="calendar-container">
+        <!--  Header for cal -->
+        <div class="calendar-header">
+          <button class="btn btn-primary" id="prevMonth">Previous Month</button>
+          <div class="dropdown calendar-dropdown">
+            <button
+              class="btn btn-outline-primary dropdown-toggle"
+              type="button"
+              id="viewDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Month View
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="viewDropdown">
+              <li>
+                <button class="dropdown-item" data-view="month">
+                  Month View
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" data-view="week">
+                  Week View
+                </button>
+              </li>
+            </ul>
+          </div>
+          <button class="btn btn-primary" id="nextMonth">Next Month</button>
+        </div>
+
+        <!--  Grid for cal -->
+        <div id="calendarGrid" class="calendar-grid">
+          <!-- ts placeholder cells for month view cuz its late asff lmao -->
+          <!-- will be dynamically populated -->
+        </div>
+
+        <!-- Calendar info -->
+        <div class="calendar-info mt-3" id="calendarInfo">
+          Click on a day to view detailed events for that day or the next 3
+          days.
+        </div>
+      </div>
+    </div>
+
+    <!-- bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const calendarGrid = document.getElementById("calendarGrid");
+      const calendarInfo = document.getElementById("calendarInfo");
+      const viewDropdown = document.querySelector("#viewDropdown");
+      const dropdownItems = document.querySelectorAll(".dropdown-item");
+      let currentView = "month";
+      let currentMonth = new Date().getMonth();
+      let currentYear = new Date().getFullYear();
+
+      function renderCalendar(view) {
+        calendarGrid.innerHTML = ""; //clear grid
+        calendarGrid.style.gridTemplateColumns =
+          view === "month" ? "repeat(7, 1fr)" : "repeat(7, 1fr)";
+        let cellsToRender = view === "month" ? 30 : 7; //e.g. for simplicity
+
+        for (let i = 1; i <= cellsToRender; i++) {
+          const cell = document.createElement("div");
+          cell.classList.add("day-cell");
+          cell.innerHTML = `<h6>${i}</h6><p>Event Details Here</p>`;
+          cell.addEventListener("click", () => showDayView(i));
+          calendarGrid.appendChild(cell);
+        }
+
+        calendarInfo.textContent =
+          view === "month"
+            ? "Click on a day to view detailed events for that day or the next 3 days."
+            : "Week view. Click on a day to view events for that day or 3-day span.";
+      }
+
+      function showDayView(day) {
+        alert(
+          `Showing events for day ${day} and the next 3 days (if applicable).`
+        );
+      }
+
+      function switchView(view) {
+        currentView = view;
+        viewDropdown.textContent =
+          view === "month" ? "Month View" : "Week View";
+        renderCalendar(view);
+      }
+
+      function updateMonth(offset) {
+        currentMonth += offset;
+        if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+        } else if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+        }
+        renderCalendar(currentView);
+      }
+
+      // event listeners
+      dropdownItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const view = item.getAttribute("data-view");
+          switchView(view);
+        });
+      });
+
+      document
+        .getElementById("prevMonth")
+        .addEventListener("click", () => updateMonth(-1));
+      document
+        .getElementById("nextMonth")
+        .addEventListener("click", () => updateMonth(1));
+
+      // initial render
+      renderCalendar("month");
+    </script>
+  </body>
+  
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+      <div class="container">
+        <p class="mb-1">
+          &copy; <span id="year"></span> South Ottawa Softball. All Rights Reserved.
+        </p>
+        <p>
+          <a href="privacy.html" class="text-light text-decoration-none mx-2"
+            >Privacy Policy</a
+          >
+          <a href="terms.html" class="text-light text-decoration-none mx-2"
+            >Terms of Service</a
+          >
+
+
+        </p>
+      </div>
+    </footer>
+</html>

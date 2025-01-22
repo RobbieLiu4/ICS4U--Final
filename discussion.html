@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Discussion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap css -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet"
+  >
+  <!-- bootstrap icons -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  >
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .post {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .post-author {
+      font-weight: bold;
+    }
+    .post-timestamp {
+      font-size: 0.85rem;
+      color: #6c757d;
+    }
+    .post-content img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+    }
+    .like-comment-section {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .like-comment-section button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0d6efd;
+    }
+    .like-comment-section button:hover {
+      text-decoration: underline;
+    }
+    .comment-list {
+      margin-top: 1rem;
+      padding-left: 1rem;
+      border-left: 3px solid #eee;
+    }
+    .comment-item {
+      margin-bottom: 0.75rem;
+    }
+    .comment-author {
+      font-weight: 600;
+    }
+    .no-login-warning {
+      color: #dc3545;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<!-- Top bar -->
+  <div class="bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div>
+        <a
+          href="team-finder.html"
+          class="text-white text-decoration-none me-3"
+          >Team Finder</a
+        >
+        <a
+          href="https://www.facebook.com/sos.softball.3"
+          target="_blank"
+          class="text-white text-decoration-none me-3"
+        >
+          <i class="bi bi-facebook"></i>
+        </a>
+      </div>
+      <div>
+        <a href="contact.html" class="text-white text-decoration-none me-3">
+          <i class="bi bi-envelope-fill"></i> Contact
+        </a>
+        <a href="search.html" class="text-white text-decoration-none me-3">
+          <i class="bi bi-search"></i> Search
+        </a>
+        <a href="login.html" class="text-white text-decoration-none">
+          <i class="bi bi-box-arrow-in-right"></i> Login
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav bar -->
+  <nav class="navbar navbar-expand-lg" style="background-color: #f0f0f0">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">South Ottawa Softball</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon">&#9776;</span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="aboutUsDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              About Us
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="aboutUsDropdown">
+              <li><a class="dropdown-item" href="staff.html">Staff</a></li>
+              <li>
+                <a class="dropdown-item" href="contact.html">Contact Us</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="who-we-are.html">Who We Are</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="gamesDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Games
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+              <li>
+                <a class="dropdown-item" href="schedule.html">Schedule</a>
+              </li>
+              <li><a class="dropdown-item" href="scores.html">Scores</a></li>
+              <li>
+                <a class="dropdown-item" href="calendar.html">Calendar</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="standings.html">Standings</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="tournament.html">Tournament</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="discussion.html">Discussion</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- discussion container -->
+<div class="container my-4">
+  <h1>Discussion</h1>
+  <div id="postFormSection" class="mb-4">
+    <div class="no-login-warning d-none" id="loginWarning">
+      You must be logged in to post!
+    </div>
+    <form id="postForm" class="d-none">
+      <div class="mb-3">
+        <label for="postText" class="form-label">Create a post:</label>
+        <textarea class="form-control" id="postText" rows="3" placeholder="What's on your mind?"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="postImage" class="form-label">Attach an image (optional):</label>
+        <input class="form-control" type="file" id="postImage" accept="image/*">
+      </div>
+      <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+  </div>
+
+  <div id="postsContainer"></div>
+</div>
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <div class="container">
+    <p class="mb-1">
+      &copy; <span id="year"></span> South Ottawa Softball. All Rights Reserved.
+    </p>
+    <p>
+      <a href="privacy.html" class="text-light text-decoration-none mx-2"
+        >Privacy Policy</a
+      >
+      <a href="terms.html" class="text-light text-decoration-none mx-2"
+        >Terms of Service</a
+      >
+
+    </p>
+  </div>
+</footer>
+<!-- bootstrap js -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+<script>
+/**
+ * simulated login check
+ * bc in a real app, gotta check session tokens/cookies from backend (gonna use java).
+ */
+let isLoggedIn = false; //set to true if bros logged in
+
+//sample posts array for demo.
+let posts = [
+  {
+    author: "John Doe",
+    content: "What a great game yesterday!",
+    imageUrl: "",
+    timestamp: new Date(Date.now() - 10 * 86400000).toISOString(), //10 days ago
+    likes: 2,
+    comments: [
+      {author: "Emily Davis", text: "Absolutely amazing!"},
+      {author: "Mark Taylor", text: "Can't wait for the next one."}
+    ]
+  },
+  {
+    author: "Sarah Johnson",
+    content: "Check out this awesome photo from practice!",
+    imageUrl: "https://via.placeholder.com/600x400",
+    timestamp: new Date(Date.now() - 35 * 86400000).toISOString(), //35 days ago (gotta be deleted)
+    likes: 10,
+    comments: []
+  },
+  {
+    author: "Emily Davis",
+    content: "Who’s ready for the playoffs?",
+    imageUrl: "",
+    timestamp: new Date().toISOString(), //rn (NOW)
+    likes: 5,
+    comments: []
+  }
+];
+
+// DOM elements
+const loginWarning = document.getElementById("loginWarning");
+const postForm = document.getElementById("postForm");
+const postsContainer = document.getElementById("postsContainer");
+
+//check login status on page load
+window.addEventListener("load", () => {
+  if (isLoggedIn) {
+    loginWarning.classList.add("d-none");
+    postForm.classList.remove("d-none");
+  } else {
+    loginWarning.classList.remove("d-none");
+    postForm.classList.add("d-none");
+  }
+  renderPosts();
+});
+
+//handle post form submission
+postForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const textValue = document.getElementById("postText").value.trim();
+  const imageFile = document.getElementById("postImage").files[0];
+  if (!textValue && !imageFile) return alert("Please enter some content or attach an image.");
+
+  //e.g. simulate creating new post
+  let newPost = {
+    author: "CurrentUser", 
+    content: textValue,
+    timestamp: new Date().toISOString(),
+    likes: 0,
+    comments: []
+  };
+
+  //if there's an image, create URL (upload to server when do java)
+  if (imageFile) {
+    newPost.imageUrl = URL.createObjectURL(imageFile);
+  }
+
+  posts.unshift(newPost); //add post to beginn.
+  document.getElementById("postText").value = "";
+  document.getElementById("postImage").value = "";
+  renderPosts();
+});
+
+//render posts
+function renderPosts() {
+  // Clear container
+  postsContainer.innerHTML = "";
+
+  // filter out posts > older than 30 days
+  const now = Date.now();
+  posts = posts.filter(post => {
+    const postTime = new Date(post.timestamp).getTime();
+    const daysOld = (now - postTime) / 86400000;
+    return daysOld <= 30;
+  });
+
+  if (posts.length === 0) {
+    postsContainer.innerHTML = "<p>No posts to show.</p>";
+    return;
+  }
+
+  //build + append posts
+  posts.forEach((post, index) => {
+    const postDiv = document.createElement("div");
+    postDiv.classList.add("post");
+
+    //header
+    const headerDiv = document.createElement("div");
+    headerDiv.classList.add("post-header");
+    headerDiv.innerHTML = `
+      <span class="post-author">${post.author}</span>
+      <span class="post-timestamp">${new Date(post.timestamp).toLocaleString()}</span>
+    `;
+
+    //content
+    const contentDiv = document.createElement("div");
+    contentDiv.classList.add("post-content");
+    const imageSection = post.imageUrl 
+      ? `<img src="${post.imageUrl}" alt="Post Image">` 
+      : "";
+    contentDiv.innerHTML = `
+      <p>${post.content}</p>
+      ${imageSection}
+    `;
+
+    //like + comment sect.
+    const likeCommentDiv = document.createElement("div");
+    likeCommentDiv.classList.add("like-comment-section");
+    likeCommentDiv.innerHTML = `
+      <button data-index="${index}" class="like-btn">Like (${post.likes})</button>
+      <button data-index="${index}" class="comment-btn">Comment (${post.comments.length})</button>
+    `;
+
+    //comment List
+    const commentList = document.createElement("div");
+    commentList.classList.add("comment-list");
+    post.comments.forEach(comment => {
+      const commentItem = document.createElement("div");
+      commentItem.classList.add("comment-item");
+      commentItem.innerHTML = `
+        <span class="comment-author">${comment.author}:</span> ${comment.text}
+      `;
+      commentList.appendChild(commentItem);
+    });
+
+    postDiv.appendChild(headerDiv);
+    postDiv.appendChild(contentDiv);
+    postDiv.appendChild(likeCommentDiv);
+    postDiv.appendChild(commentList);
+
+    postsContainer.appendChild(postDiv);
+  });
+
+  //add event listeners for --> like + comment
+  document.querySelectorAll(".like-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      if (!isLoggedIn) return alert("Please log in to like posts.");
+      const idx = e.target.dataset.index;
+      posts[idx].likes++;
+      renderPosts();
+    });
+  });
+  document.querySelectorAll(".comment-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      if (!isLoggedIn) return alert("Please log in to comment.");
+      const idx = e.target.dataset.index;
+      const commentText = prompt("Enter your comment:");
+      if (commentText) {
+        posts[idx].comments.push({
+          author: "CurrentUser",
+          text: commentText
+        });
+        renderPosts();
+      }
+    });
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Team Finder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- bootstrap CSS -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+  />
+  <!-- bootstrap icons -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  >
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .team-info {
+      margin-top: 1rem;
+    }
+    .player-list .card {
+      margin-bottom: 1rem;
+    }
+    .availability-section {
+      margin-top: 1rem;
+      background: #e7f5ff;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    .availability-section h5 {
+      margin-bottom: 1rem;
+    }
+    .no-team-selected {
+      color: #6c757d;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    /* highlight available player's card*/
+    .available-player {
+      background-color: #d4edda !important; /* for light green */
+      border: 1px solid #c3e6cb !important; /* for green border*/
+    }
+    .available-count {
+      color: #28a745; /*green text */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Top bar -->
+<div class="bg-dark text-white py-2">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div>
+      <a
+        href="team-finder.html"
+        class="text-white text-decoration-none me-3"
+        >Team Finder</a
+      >
+      <a
+        href="https://www.facebook.com/sos.softball.3"
+        target="_blank"
+        class="text-white text-decoration-none me-3"
+      >
+        <i class="bi bi-facebook"></i>
+      </a>
+    </div>
+    <div>
+      <a href="contact.html" class="text-white text-decoration-none me-3">
+        <i class="bi bi-envelope-fill"></i> Contact
+      </a>
+      <a href="search.html" class="text-white text-decoration-none me-3">
+        <i class="bi bi-search"></i> Search
+      </a>
+      <a href="login.html" class="text-white text-decoration-none">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Main navv. -->
+<nav class="navbar navbar-expand-lg" style="background-color: #f0f0f0">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">South Ottawa Softball</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon">&#9776;</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="aboutUsDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            About Us
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="aboutUsDropdown">
+            <li><a class="dropdown-item" href="staff.html">Staff</a></li>
+            <li>
+              <a class="dropdown-item" href="contact.html">Contact Us</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="who-we-are.html">Who We Are</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="gamesDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Games
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
+            <li>
+              <a class="dropdown-item" href="schedule.html">Schedule</a>
+            </li>
+            <li><a class="dropdown-item" href="scores.html">Scores</a></li>
+            <li>
+              <a class="dropdown-item" href="calendar.html">Calendar</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="standings.html">Standings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="tournament.html">Tournament</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="discussion.html">Discussion</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- team finder sect. -->
+<div class="container my-4">
+  <h1>Team Finder</h1>
+  <p>Select a team to view its roster. If you're logged in and on that team's roster, you can set your availability for the next game.</p>
+
+  <!--  dropdown for teams-->
+  <div class="mb-3">
+    <label for="teamSelect" class="form-label">Choose a Team:</label>
+    <select id="teamSelect" class="form-select">
+      <option value="" disabled selected>Select a team</option>
+    </select>
+  </div>
+
+  <div id="teamInfo" class="team-info">
+    <p class="no-team-selected" id="noTeamSelected">No team selected.</p>
+  </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <div class="container">
+    <p class="mb-1">
+      &copy; <span id="year"></span> South Ottawa Softball. All Rights Reserved.
+    </p>
+    <p>
+      <a href="privacy.html" class="text-light text-decoration-none mx-2"
+        >Privacy Policy</a
+      >
+      <a href="terms.html" class="text-light text-decoration-none mx-2"
+        >Terms of Service</a
+      >
+
+
+    </p>
+  </div>
+</footer>
+
+
+<!-- bootstrap js -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+<script>
+  //e.g.login variables
+  let isLoggedIn = true;
+  let loggedInUser = "Emily Davis";
+
+  //e.g. data: e/ roster item --> {name,avail.}
+  const teams = [
+    {
+      name: "Got The Runs",
+      nextGame: "Saturday, 4 PM @ Calzavara Park",
+      roster: [
+        { name: "Emily Davis", available: true },
+        { name: "John Doe", available: false },
+        { name: "Sarah Johnson", available: true },
+        { name: "Mark Taylor", available: false }
+      ]
+    },
+    {
+      name: "Raccoons",
+      nextGame: "Sunday, 2 PM @ Windsor Park",
+      roster: [
+        { name: "Liam Walker", available: true },
+        { name: "Mike Brown", available: false },
+        { name: "Lucy Adams", available: true },
+        { name: "Jane Smith", available: false }
+      ]
+    }
+  ];
+
+  const teamSelect = document.getElementById("teamSelect");
+  const teamInfo = document.getElementById("teamInfo");
+  const noTeamSelected = document.getElementById("noTeamSelected");
+
+  //populate dropdown on page load
+  window.addEventListener("load", () => {
+    document.getElementById("year").textContent = new Date().getFullYear();
+    teams.forEach((team) => {
+      const option = document.createElement("option");
+      option.value = team.name;
+      option.textContent = team.name;
+      teamSelect.appendChild(option);
+    });
+  });
+
+  //re-render selected teams info when needed
+  function renderTeam(selectedTeam) {
+    teamInfo.innerHTML = "";
+
+    //next game+availability count
+    const availableCount = selectedTeam.roster.filter((p) => p.available).length;
+    const gameInfo = document.createElement("p");
+    gameInfo.innerHTML = `
+      <strong>Next Game:</strong> ${selectedTeam.nextGame} 
+      <span class="available-count">(Available: ${availableCount})</span>
+    `;
+    teamInfo.appendChild(gameInfo);
+
+    //accordion --> roster
+    const rosterSection = document.createElement("div");
+    rosterSection.innerHTML = `
+      <div class="accordion" id="rosterAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingRoster">
+            <button 
+              class="accordion-button collapsed" 
+              type="button" 
+              data-bs-toggle="collapse" 
+              data-bs-target="#collapseRoster" 
+              aria-expanded="false" 
+              aria-controls="collapseRoster"
+            >
+              Roster
+            </button>
+          </h2>
+          <div 
+            id="collapseRoster" 
+            class="accordion-collapse collapse" 
+            aria-labelledby="headingRoster" 
+            data-bs-parent="#rosterAccordion"
+          >
+            <div class="accordion-body player-list"></div>
+          </div>
+        </div>
+      </div>
+    `;
+    teamInfo.appendChild(rosterSection);
+
+    const playerList = rosterSection.querySelector(".player-list");
+    selectedTeam.roster.forEach((player) => {
+      const cardDiv = document.createElement("div");
+      cardDiv.classList.add("card");
+      //highlight avail. players --> green
+      if (player.available) cardDiv.classList.add("available-player");
+
+      cardDiv.innerHTML = `
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <span>${player.name}</span>
+        </div>
+      `;
+      playerList.appendChild(cardDiv);
+    });
+
+    //if user logged in + on the roster, show availability toggle
+    const userOnTeam = selectedTeam.roster.find(
+      (p) => p.name === loggedInUser
+    );
+    if (isLoggedIn && userOnTeam) {
+      const availabilityDiv = document.createElement("div");
+      availabilityDiv.classList.add("availability-section");
+      availabilityDiv.innerHTML = `
+        <h5>Set Your Availability</h5>
+        <p>
+          You are on the roster for <strong>${selectedTeam.name}</strong>. 
+          Let your teammates know if you can make the next game!
+        </p>
+        <div class="form-check form-switch">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            id="availabilitySwitch"
+            ${userOnTeam.available ? "checked" : ""}
+          >
+          <label class="form-check-label" for="availabilitySwitch">
+            I am available
+          </label>
+        </div>
+      `;
+      teamInfo.appendChild(availabilityDiv);
+
+      const availabilitySwitch = availabilityDiv.querySelector("#availabilitySwitch");
+      availabilitySwitch.addEventListener("change", () => {
+        userOnTeam.available = availabilitySwitch.checked;
+        //re-render to update highlight+avail. count
+        renderTeam(selectedTeam);
+      });
+    }
+  }
+
+  //on team selection, find team choice+render
+  teamSelect.addEventListener("change", () => {
+    const selectedTeamName = teamSelect.value;
+    const selectedTeam = teams.find((t) => t.name === selectedTeamName);
+    if (!selectedTeam) return;
+
+    noTeamSelected.style.display = "none";
+    renderTeam(selectedTeam);
+  });
+</script>
+</body>
+</html>
