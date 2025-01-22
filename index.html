@@ -4,19 +4,77 @@
     <meta charset="UTF-8" />
     <title>South Ottawa Softball</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Bootstrap CSS -->
+    <!-- bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <!-- Bootstrap Icons -->
+    <!-- bootstrap icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
+    <style>
+      .player-spotlight {
+        background: linear-gradient(135deg, #ffeb3b, #ffc107);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-top: 2rem;
+      }
+      .player-photo {
+        width: 150px;
+        height: 150px; /* image is square */
+        border-radius: 50%; /* makes image a circle */
+        border: 4px solid #fff;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        object-fit: cover; /* ensures the image scales properly within the circle */
+      }
+      .player-spotlight h3 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+      .player-spotlight p {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+      }
+      /* image height 4 carousel */
+      .carousel-item img {
+        max-height: 400px;
+        object-fit: cover;
+      }
+      /* for the dark background behind dat text */
+      .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.45);
+        border-radius: 0.5rem;
+        padding: 1rem;
+      }
+      /* upcoming events */
+      .events-section {
+        background-color: #fff9e6;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      .hr-leaderboard {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      .hr-leaderboard table tr th,
+      .hr-leaderboard table tr td {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <!-- Top Dark Bar -->
+    <!-- Top dark bar -->
     <div class="bg-dark text-white py-2">
       <div class="container d-flex justify-content-between align-items-center">
         <div>
@@ -47,7 +105,7 @@
       </div>
     </div>
 
-    <!-- Main Navigation Bar -->
+    <!-- Main nav Bar -->
     <nav class="navbar navbar-expand-lg" style="background-color: #f0f0f0">
       <div class="container">
         <a class="navbar-brand" href="index.html">South Ottawa Softball</a>
@@ -100,19 +158,11 @@
                 Games
               </a>
               <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
-                <li>
-                  <a class="dropdown-item" href="schedule.html">Schedule</a>
-                </li>
+                <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
                 <li><a class="dropdown-item" href="scores.html">Scores</a></li>
-                <li>
-                  <a class="dropdown-item" href="calendar.html">Calendar</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="standings.html">Standings</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="tournament.html">Tournament</a>
-                </li>
+                <li><a class="dropdown-item" href="calendar.html">Calendar</a></li>
+                <li><a class="dropdown-item" href="standings.html">Standings</a></li>
+                <li><a class="dropdown-item" href="tournament.html">Tournament</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -132,57 +182,196 @@
           style="max-width: 600px"
         />
       </div>
-    
 
-    <h2 id="section-one" class="mt-5">Blablablabber</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel lacus
-      diam. Mauris vel congue lorem. Vestibulum sit amet malesuada tortor. Donec
-      placerat commodo nisl, eu fermentum lorem sollicitudin nec. Vivamus
-      placerat suscipit ante, in convallis nisi tristique at.
-    </p>
-    <p>
-      Nullam bibendum sem in dui aliquam, et eleifend diam pellentesque.
-      Phasellus lobortis sem a eros dictum, ac dapibus lectus venenatis. Donec
-      egestas quis lorem in consectetur. Vivamus sed risus dolor.
-    </p>
-
-    <h2 id="section-two" class="mt-5">Additional Details</h2>
-    <p>
-      Sed quis bibendum neque. Curabitur vehicula felis sed turpis efficitur,
-      sed tincidunt leo condimentum. Quisque sit amet arcu varius, pharetra urna
-      id, feugiat odio. Fusce semper dapibus augue, quis accumsan velit laoreet
-      non.
-    </p>
-    <p>
-      Pellentesque in lacus viverra, blandit nisl at, eleifend justo. Mauris et
-      egestas tortor. Nam gravida nunc sit amet erat ultricies, sit amet feugiat
-      justo convallis.
-    </p>
-
-    <div class="row mt-5">
-      <div class="col-md-6" id="news">
-        <h3>News</h3>
+      <!-- player spotlight -->
+      <div class="player-spotlight">
+        <img
+          src="https://cdn.glitch.global/1dc13e00-e04f-48b4-b6e2-ec47e56bd016/softballllll%20pic.jpg?v=1737510915196"
+          alt="Player of the Week"
+          class="player-photo"
+        />
+        <h3>Player Spotlight: Sarah Johnson</h3>
+        <p><strong>Team:</strong> Boomtown Bats</p>
+        <p><strong>Stats:</strong> 10 RBIs, 5 Home Runs, .450 Avg</p>
         <p>
-          Breaking news about the upcoming season and roster updates. Stay tuned
-          for further announcements on our official channels.
+          Sarah has been a star this week, showcasing her incredible batting
+          skills and contributing to her team's success.
         </p>
       </div>
-      <div class="col-md-6" id="schedule">
-        <h3>Upcoming Events</h3>
-        <ul>
-          <li>Wed: 6:00 pm Brew Jays vs Tee Ballers @ Calzavera Park</li>
-          <li>Day 2: Exhibition Match at 6:00 PM</li>
-          <li>Day 3: Off Day (No scheduled events)</li>
-        </ul>
+
+      <!-- news Carousel w/ fade & int. -->
+      <div
+        id="newsCarousel"
+        class="carousel slide carousel-fade mt-5"
+        data-bs-ride="carousel"
+        data-bs-interval="4000"
+        data-bs-pause="hover"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#newsCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#newsCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#newsCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://cdn.glitch.global/1dc13e00-e04f-48b4-b6e2-ec47e56bd016/softball%20casual%20photoo.jpg?v=1737469810039"
+              class="d-block w-100"
+              alt="News 1"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>News Headline 1</h5>
+              <p>Big updates about the league's upcoming season!</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://cdn.glitch.global/1dc13e00-e04f-48b4-b6e2-ec47e56bd016/softball%20low%20brightness.jpg?v=1737527718249"
+              class="d-block w-100"
+              alt="News 2"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>News Headline 2</h5>
+              <p>Check out this week's highlights and top plays.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://cdn.glitch.global/1dc13e00-e04f-48b4-b6e2-ec47e56bd016/softball%20medium%20brightnesss.jpg?v=1737527715308"
+              class="d-block w-100"
+              alt="News 3"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>News Headline 3</h5>
+              <p>New teams joining the league—get all the details here.</p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#newsCarousel"
+          data-bs-slide="prev"
+        >
+          <span
+            class="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#newsCarousel"
+          data-bs-slide="next"
+        >
+          <span
+            class="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- upcoming events -->
+      <div class="events-section mt-5">
+        <h3 class="mb-4">Upcoming Events</h3>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="card text-center h-100">
+              <div class="card-body">
+                <h5 class="card-title">Wednesday Event</h5>
+                <p class="card-text">
+                  Brew Jays vs Tee Ballers @ Calzavara Park - 6:00 PM
+                </p>
+              </div>
+              <div class="card-footer">
+                <i class="bi bi-calendar-event"></i> Wednesday
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-center h-100">
+              <div class="card-body">
+                <h5 class="card-title">Exhibition Match</h5>
+                <p class="card-text">Starts at 6:00 PM—Don't miss it!</p>
+              </div>
+              <div class="card-footer">
+                <i class="bi bi-calendar-event"></i> Thursday
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-center h-100">
+              <div class="card-body">
+                <h5 class="card-title">Off Day</h5>
+                <p class="card-text">No scheduled events—enjoy the break!</p>
+              </div>
+              <div class="card-footer">
+                <i class="bi bi-calendar-event"></i> Friday
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- home run Leaderboard for players -->
+      <div class="hr-leaderboard mt-5">
+        <h3 class="mb-4">Home Run Leaderboard</h3>
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Team</th>
+              <th>HR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Sarah Johnson</td>
+              <td>Boomtown Bats</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>John Doe</td>
+              <td>Got The Runs</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Emily Davis</td>
+              <td>Raccoons</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
 
     <footer class="bg-dark text-white text-center py-3 mt-5">
       <div class="container">
         <p class="mb-1">
-          &copy; <span id="year"></span> Softball League. All Rights Reserved.
+          &copy; <span id="year"></span> South Ottawa Softball. All Rights Reserved.
         </p>
         <p>
           <a href="privacy.html" class="text-light text-decoration-none mx-2"
@@ -191,10 +380,6 @@
           <a href="terms.html" class="text-light text-decoration-none mx-2"
             >Terms of Service</a
           >
-        <p>
-        Made by Robbie Liu    
-        </p>
-
         </p>
       </div>
     </footer>
@@ -202,7 +387,7 @@
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 
-    <!-- Bootstrap JS -->
+    <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
