@@ -1,0 +1,11 @@
+{
+    "users": {
+      "ltest@gmail.com": {
+        "password": "passwordy"
+      },
+      "user@example.com": {
+        "password": "passworder"
+      }
+    }
+  }
+  
